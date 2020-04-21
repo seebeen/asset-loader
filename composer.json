@@ -1,0 +1,23 @@
+{
+    "name": "sgi/asset-loader",
+    "description": "This Module Provides a simple interface to enqueue files in your WordPress plugins / themes",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": {
+            "SGI\\WP\\": "src/"   
+        }
+    },
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Sibin Grasic",
+            "email": "sg@sgi.io",
+            "homepage": "https://sgi.io"
+        },
+        {
+            "name": "Igor Hrcek",
+            "email": "igor.hrcek@mint.rs",
+            "homepage": "https://mint.rs"
+        }
+    ]
+}
