@@ -37,7 +37,7 @@ class Loader implements Loadable
     public function asset_uri(string $file) : string
     {
 
-        return (filter_var($asset, FILTER_VALIDATE_URL)) ?
+        return (filter_var($file, FILTER_VALIDATE_URL)) ?
             $file :
             "{$this->base_uri}/assets/{$file}";
 
@@ -47,7 +47,7 @@ class Loader implements Loadable
     public function asset_path(string $file) : string
     {
 
-        return (filter_var($asset, FILTER_VALIDATE_URL)) ?
+        return (filter_var($file, FILTER_VALIDATE_URL)) ?
             $file :
             "{$this->base_uri}/assets/{$file}";
 
