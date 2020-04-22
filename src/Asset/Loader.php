@@ -28,17 +28,28 @@ class Loader implements Loadable
 
     }
 
+    private function is_external($asset)
+    {
+
+
+    }
+
     public function asset_uri(string $file) : string
     {
 
-        return "{$this->base_uri}/assets/{$file}";
+        return (filter_var($asset, FILTER_VALIDATE_URL)) ?
+            $file :
+            "{$this->base_uri}/assets/{$file}";
+
 
     }
 
     public function asset_path(string $file) : string
     {
 
-        return "{$this->path}/assets/{$file}";
+        return (filter_var($asset, FILTER_VALIDATE_URL)) ?
+            $file :
+            "{$this->base_uri}/assets/{$file}";
 
     }
 
@@ -59,7 +70,12 @@ class Loader implements Loadable
             if (!$load_style)
                 continue;
 
-            wp_register_style($handler, $this->asset_uri($file), null, $this->version );
+            wp_register_style(
+                $handler,
+                $this->asset_uri($file),
+                null,
+                $this->version
+            );
             wp_enqueue_style($handler);
 
         endforeach;
@@ -83,7 +99,12 @@ class Loader implements Loadable
             if (!$load_script)
                 continue;
 
-            wp_register_script($handler, $this->asset_uri($data['file']), $data['deps'], $this->version, $data['footer']);
+            wp_register_script($handler,
+                $this->asset_uri($data['file']),
+                $data['deps'],
+                $this->version,
+                $data['footer'])
+            ;
             wp_enqueue_script($handler);
 
         endforeach;
