@@ -9,6 +9,8 @@ class Loader implements Loadable
 
     private $version;
 
+    private $priority;
+
     private $base_uri;
 
     private $path;
@@ -21,10 +23,13 @@ class Loader implements Loadable
         foreach ($args as $var => $val)
             $this->$var = $val;
 
+        if (!isset($this->priority))
+            $this->priority = 50;
+
         $action = (!is_admin())  ? 'wp_enqueue_scripts' : 'admin_enqueue_scripts';
 
-        add_action($action, [&$this, 'load_styles']);
-        add_action($action, [&$this, 'load_scripts']);
+        add_action($action, [&$this, 'load_styles'], $this->priority);
+        add_action($action, [&$this, 'load_scripts'], $this->priority);
 
     }
 
