@@ -104,12 +104,26 @@ class Loader implements Loadable
             if (!$load_script)
                 continue;
 
-            wp_register_script($handler,
+            wp_register_script(
+                $handler,
                 $this->asset_uri($data['file']),
                 $data['deps'],
                 $this->version,
-                $data['footer'])
-            ;
+                $data['footer']
+            );
+
+            $localize = $data['local'];
+
+            if ($localize) :
+
+                wp_localize_script(
+                    $handler,
+                    $localize['name'],
+                    $localize['data']
+                );
+
+            endif;
+
             wp_enqueue_script($handler);
 
         endforeach;
