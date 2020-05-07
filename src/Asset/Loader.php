@@ -66,7 +66,7 @@ class Loader implements Loadable
         if (!$load_styles)
             return;
 
-        foreach ($this->assets['css'] as $name => $file) :
+        foreach ($this->assets['css'] as $name => $data) :
 
             $handler = $this->name . '-' . $name;
 
@@ -77,8 +77,8 @@ class Loader implements Loadable
 
             wp_register_style(
                 $handler,
-                $this->asset_uri($file),
-                null,
+                $this->asset_uri($data['file']),
+                $data['deps'],
                 $this->version
             );
             wp_enqueue_style($handler);
@@ -112,7 +112,7 @@ class Loader implements Loadable
                 $data['footer']
             );
 
-            $localize = $data['local'];
+            $localize = $data['localize'];
 
             if ($localize) :
 
