@@ -1,5 +1,6 @@
 {
     "name": "sgi/asset-loader",
+    "version": "1.1",
     "description": "This Module Provides a simple interface to enqueue files in your WordPress plugins / themes",
     "type": "wordpress-plugin",
     "autoload": {

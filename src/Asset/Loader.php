@@ -90,7 +90,7 @@ class Loader implements Loadable
     public function load_scripts() : void
     {
 
-        $load_scripts = apply_filters("sgi/loader{$this->name}/load_scripts", true);
+        $load_scripts = apply_filters("sgi/loader/{$this->name}/load_scripts", true);
 
         if (!$load_scripts)
             return;
